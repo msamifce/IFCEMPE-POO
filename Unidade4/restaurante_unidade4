@@ -1,0 +1,60 @@
+# restaurante_unidade4.py
+
+class Restaurante:
+    def __init__(self, nomeRestaurante, tipoCozinha):
+        self.nomeRestaurante = nomeRestaurante
+        self.tipoCozinha = tipoCozinha
+        self.numeroServidos = 0  # Adicionando o novo atributo com valor padrão 0
+
+    def descreverRestaurante(self):
+        print(f"Nome do Restaurante: {self.nomeRestaurante}")
+        print(f"Tipo de Cozinha: {self.tipoCozinha}")
+    
+    def abrirRestaurante(self):
+        print(f"O restaurante {self.nomeRestaurante} está agora aberto!")
+
+    def __str__(self):
+        return f"Restaurante: {self.nomeRestaurante}, Tipo: {self.tipoCozinha}, Clientes Servidos: {self.numeroServidos}"
+
+    # 2. Adicionando os métodos get e set
+    def getNumeroServidos(self):
+        return self.numeroServidos
+
+    def setNumeroServidos(self, novo_numero):
+        if novo_numero >= 0:
+            self.numeroServidos = novo_numero
+            print(f"Número de clientes servidos atualizado para: {self.numeroServidos}")
+        else:
+            print("Erro: O número de clientes não pode ser negativo.")
+            
+    # 3. Adicionando o método para incrementar
+    def incrementeNumeroServidos(self, incremento):
+        if incremento > 0:
+            # Invoca o método get para pegar o valor atual
+            valor_atual = self.getNumeroServidos()
+            # Invoca o método set para atualizar o valor
+            self.setNumeroServidos(valor_atual + incremento)
+        else:
+            print("Erro: O incremento deve ser um valor positivo.")
+
+# Cria a instância solicitada
+restaurante = Restaurante("Restaurante da Praça", "Comida Caseira")
+
+# 1. Apresenta o número de clientes atendidos, muda o valor e exibe novamente
+print(f"Número inicial de clientes servidos: {restaurante.numeroServidos}")
+restaurante.numeroServidos = 15
+print(f"Número de clientes após atualização direta: {restaurante.numeroServidos}")
+
+print("-" * 20)
+
+# 2. Testa os métodos get e set
+print(f"Número de clientes (via get): {restaurante.getNumeroServidos()}")
+restaurante.setNumeroServidos(25)
+print(f"Número de clientes após set: {restaurante.getNumeroServidos()}")
+
+print("-" * 20)
+
+# 3. Testa o método de incremento
+print(f"Número de clientes antes do incremento: {restaurante.getNumeroServidos()}")
+restaurante.incrementeNumeroServidos(5)
+print(f"Número de clientes após o incremento: {restaurante.getNumeroServidos()}")
